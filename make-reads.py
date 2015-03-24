@@ -13,7 +13,25 @@ def make_read(genome, readlen, error_rate):
 
    read = genome[start:end]
    assert len(read) == readlen, len(read)
-   
+
+   n_errors = 0
+   limit = int(1.0/error_rate)
+   for i in range(0, readlen):
+      while 1:
+         q = random.randint(0, limit)
+         if q != 0:
+            break
+
+         error_pos = random.randint(0, readlen - 1)
+         error_pos = int(error_pos / 2)
+         error_pos = error_pos * 2
+         
+         new_base = random.choice("acgt")
+         new_read = read[:error_pos] + new_base + \
+                    read[error_pos + 1:]
+         read = new_read
+         n_errors += 1
+
    return read
 
 
