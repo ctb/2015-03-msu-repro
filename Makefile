@@ -1,3 +1,7 @@
+# targets:
+# 'all' builds all
+# 'clean' removes all files that can be reconstructed
+
 all: reads.fa
 
 clean:
