@@ -2,3 +2,6 @@
 data
 genome.fa
 reads.fa
+error-locations.hist
+reads.ct
+reads.ct.info
