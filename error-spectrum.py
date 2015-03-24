@@ -15,10 +15,14 @@ def main():
     hist = [0] * 150
 
     for n, record in enumerate(screed.open(args.reads)):
-        posns = ct.find_spectral_error_positions(record.sequence,
+        seq = record.sequence.upper().replace('N', 'A')
+        posns = ct.find_spectral_error_positions(seq,
                                                  args.cutoff)
         for pos in posns:
             hist[pos] += 1
+
+        if n > 1e5:
+            break
 
     for p, count in enumerate(hist):
         print p, count
